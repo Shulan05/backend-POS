@@ -1,8 +1,9 @@
 <?php
-$name_err = $slug_err = $price_err= $short_desc_err=$long_desc_err='';
+$name_err = $slug_err = $price_err= $short_desc_err=$long_desc_err=$image_err='';
 
 // Assuming createUser() and usernameExists() are defined elsewhere
-if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_POST['short_desc']) && isset($_POST['long_desc']) /* && isset($_POST['id_categories']) */) {
+if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_POST['short_desc']) && isset($_POST['long_desc']  ) && (isset($_FILES['image']))
+) {
     $name = $_POST['name'];
     $slug = $_POST['slug'];
     $price = $_POST['price'];
@@ -10,7 +11,8 @@ if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_P
     $long_desc = $_POST['long_desc'];
     $id_categories = isset($_POST['id_categories']) ?$_POST['id_categories']:[];
  
-
+  
+    $image = $_FILES['image'];
     // Validation
     if (empty($name)) {
         $name_err = "Name  is required!";
@@ -49,33 +51,49 @@ if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_P
     }
     // If no errors, proceed with user creation
     if (empty($name_err) && empty($slug_err)&& empty($price_err)&& empty($short_desc_err)&& empty($long_desc_err)) {
-        if (createProduct($name, $slug,$price ,$short_desc,$long_desc,$id_categories)) {
-            // Reset form inputs after successful creation
-            $name_err = $slug_err = $price_err= $short_desc_err=$long_desc_err='';
-            unset($_POST['name']);
-            unset($_POST['slug']) ;
-            unset($_POST['price']);
-            unset($_POST['short_desc']) ;
-            unset($_POST['long_desc']);
-            unset($_POST['id_categories']) ;
+        try{
+            if(createProduct($name, $slug,$price ,$short_desc,$long_desc,$image,$id_categories)) {
 
-            echo '<div class="alert alert-success" role="alert">
-            Product successfully created! 
-            <a href="./?page=product/home" class="alert-link">Product List</a>
-          </div>';
+        
+        
+
+                $name_err = $slug_err = $price_err= $short_desc_err=$long_desc_err='';
+                unset($_POST['name']);
+                unset($_POST['slug']) ;
+                unset($_POST['price']);
+                unset($_POST['short_desc']) ;
+                unset($_POST['long_desc']);
+                unset($_POST['id_categories']) ;
     
-        } else {
-            echo '<div class="alert alert-danger" role="alert">Product cannot be added!</div>';
+                echo '<div class="alert alert-success" role="alert">
+                Product successfully created! 
+                <a href="./?page=product/home" class="alert-link">Product List</a>
+              </div>';
+        
+            } else {
+               
+                    echo '<div class="alert alert-danger" role="alert">Product cannot be added!</div>';
+              
         }
+    }catch(Exception $th){
+         $image_err = $th->getMessage();
+            
+        }
+         
+        }
+
+        
+            // Reset form inputs after successful creation
+         
     }
-}
+
 
 ?>
 
 
 
 
-<form action="./?page=product/create" method="post" class="w-50 mx-auto">
+<form action="./?page=product/create" method="post" class="w-50 mx-auto" enctype="multipart/form-data" >
     <h1>Create Product</h1>
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -150,7 +168,13 @@ if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_P
         
         <?php endif; ?>
     </div>
-   
+    <div class="mb-3">
+  <label for="product-image" class="form-label">Select Product Image</label>
+  <input name="image" class="form-control <?php echo $image_err !== '' ? 'is-invalid' : ''; ?>" type="file" id="product-image"><?php echo isset($_POST['image']) ?($_POST['image']) : ''; ?></div>
+        <div class="invalid-feedback">
+            <?php echo $image_err?>
+        </div>
+</div>
     
     </div>   
     <div class="mb-3">

@@ -47,7 +47,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         </div>
         <?php endif; ?>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary mt-3">Login</button>
 </form>
 
 

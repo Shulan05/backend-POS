@@ -2,7 +2,7 @@
 
 function  categoryNameExists($name){
     global $db;
-    $query = $db->query("SELECT id_category FROM tbl_category WHERE slug = '$name'");
+    $query = $db->query("SELECT id_category FROM tbl_category WHERE name = '$name'");
     //$db->close();
     if($query->num_rows ){
         return true;

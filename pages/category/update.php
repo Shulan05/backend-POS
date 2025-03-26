@@ -18,8 +18,8 @@ if (isset($_POST['name'], $_POST['slug'])) {
     if (empty($name)) {
         $name_err = "Name  is required!";
     }else {
-        if ($name !== $manage_category-> name && categorySlugExists($name)) {
-        $name_err = "Slug is already exists!";
+        if ($name !== $manage_category-> name && categoryNameExists($name)) {
+        $name_err = "Name is already exists!";
          }
     }
 

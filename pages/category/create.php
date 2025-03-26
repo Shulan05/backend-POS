@@ -13,16 +13,17 @@ if (isset($_POST['name'], $_POST['slug'])) {
     }else{
         if
         (categoryNameExists($name)) {
-            $name_err = "Slug already exists!";
+            $name_err = "Name already exists!";
         }
     }
 
     if (empty($slug)) {
         $slug_err = "Slug is required!";
-    } elseif (categorySlugExists($slug)) {
+    } else{
+        if (categorySlugExists($slug)) {
         $slug_err = "Slug already exists!";
+     }
     }
-
     // If no errors, proceed with user creation
     if (empty($name_err) && empty($slug_err)) {
         if (createCategory($name, $slug )) {

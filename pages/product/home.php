@@ -20,6 +20,8 @@
         <th>Price</th>
         <th>Qty</th>
         <th>Short Desc</th>
+        <th>Image</th>
+        
        
        
         
@@ -38,10 +40,15 @@
                 <td> <?php echo $row->price?></td>
                 <td> <?php echo $row->qty?></td>
                 <td> <?php echo $row->short_desc?></td>
+                <td>
+                <img src="assets/images/<?php echo $row->image; ?>" style="width: 10%;">
+
+</td>
+
                 
                 
-                <td> <a class="btn btn-primary" href="./?page=product/update&id=<?php echo $row->id_product ?>">Update</a>
-                    <a class="btn btn-danger" href="./?page=product/delete&id=<?php echo $row->id_product ?>" >Delete</a>
+                <td> <a class="btn btn-primary " href="./?page=product/update&id=<?php echo $row->id_product ?>">Update</a>
+                    <a class="btn btn-danger " href="./?page=product/delete&id=<?php echo $row->id_product ?>" >Delete</a>
             
             </td>
                 
