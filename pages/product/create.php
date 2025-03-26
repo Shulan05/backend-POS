@@ -183,10 +183,13 @@ if (isset($_POST['name'], $_POST['slug']) && isset($_POST['price']) && isset($_P
     $manage_categories = getCategories();
     if($manage_categories !== null){
         while ($row = $manage_categories->fetch_object()){
+
+            $checked=isset($_POST ['id_categories'])&& in_array($row->id_category,$_POST['id_categories'])?'checked':'';
+
             ?>       
         
         <div class="form-check">
-        <input name="id_categories[]" class="form-check-input" type="checkbox" value="<?php echo $row->id_category; ?>" id="flexCheckDefault_<?php echo $row->id_category; ?>">
+        <input name="id_categories[]"<?php echo $checked ?> class="form-check-input" type="checkbox" value="<?php echo $row->id_category; ?>" id="flexCheckDefault_<?php echo $row->id_category; ?>">
 <label class="form-check-label" for="flexCheckDefault_<?php echo $row->id_category; ?>">
    <?php echo $row->name; ?>
 </label>

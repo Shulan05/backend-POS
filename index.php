@@ -18,7 +18,10 @@ if(  isset($_GET['page'])   ){
     'category/home','category/create','category/update','category/delete','product/home',
     'product/create',
     'product/update'
-    ,'product/delete'];
+    ,'product/delete','stock/home',
+    'stock/create',
+    'stock/update'
+    ,'stock/delete'];
     $user_pages =[];
     $before_login_pages =['login' ,'register'];
     $after_login_pages =['dashboard',

@@ -1,9 +1,9 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="./">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="container ">
+    <a class="navbar-brand " href="./?page=home">Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,6 +27,7 @@
       <li><a class="dropdown-item" href="./?page=user/home">User Account</a></li>
       <li><a class="dropdown-item" href="./?page=category/home">Category Page</a></li>
       <li><a class="dropdown-item" href="./?page=product/home">Product Page</a></li>
+      <li><a class="dropdown-item" href="./?page=stock/home">Stock Page</a></li>
       <!--<li><hr class="dropdown-divider"></li>-->
     
       

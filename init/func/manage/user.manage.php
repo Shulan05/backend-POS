@@ -1,7 +1,7 @@
 <?php
 function getUsers(){
     global $db;
-    $query = $db->query("SELECT * FROM tbl_users");
+    $query = $db->query("SELECT id_user,user_label,level FROM tbl_users WHERE level = 'User'");
    
     if($query->num_rows ){
        
@@ -11,22 +11,26 @@ function getUsers(){
     return null;
 }
 function createUser($user_label, $username, $password)
- {
+{
     global $db;
-
-    $query = $db->prepare("INSERT INTO tbl_users (user_label, username, password, level) VALUES ('$user_label', '$username', '$password', 'User')");
-
-    if ($query->execute()) {
+    $query = $db->prepare("INSERT INTO tbl_users(user_label,username,password,level) VALUES (?,?,?,'User')");
+    $query->bind_param('sss', $user_label, $username, $password);
+    $query->execute();
+    if ($db->affected_rows) {
         return true;
-    } 
+    }
     return false;
 }
 function getUserByID($id){
     global $db;
 
-    $query = $db->query(" SELECT id_user ,user_label ,level FROM  tbl_users WHERE id_user = '$id' AND level = 'User'");
-    if ($query->num_rows){
-        return $query->fetch_object();
+    $query = $db->prepare(" SELECT id_user ,user_label ,level FROM  tbl_users WHERE id_user = ? AND level = 'User'");
+    $query->bind_param('i', $id);
+    $query->execute();
+    $result = $query->get_result();
+   
+    if ($result->num_rows){
+        return $result->fetch_object();
     } 
     return null;
 }
@@ -67,7 +71,9 @@ function updateUser($id, $user_label , $username , $password){
  
 function deleteUser($id ){
     global $db;
-    $db->query("DELETE  FROM tbl_users WHERE id_user ='$id'");
+    $query=$db->prepare("DELETE  FROM tbl_users WHERE id_user =?");
+    $query->bind_param('i', $id);
+    $query->execute();
     if($db-> affected_rows){
         return true;
     }
