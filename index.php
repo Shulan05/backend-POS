@@ -22,10 +22,13 @@ if(  isset($_GET['page'])   ){
     'stock/create',
     'stock/update'
     ,'stock/delete'];
-    $user_pages =[];
+    $user_pages =[
+        'cart/home','cart/create'
+    ];
     $before_login_pages =['login' ,'register'];
     $after_login_pages =['dashboard',
-    ...$admin_pages //flat copy
+    ...$admin_pages, //flat copy
+    ...$user_pages
   ];
     if(
         $page === 'logout' ||
@@ -33,6 +36,9 @@ if(  isset($_GET['page'])   ){
      (in_array($page, $after_login_pages) && LoggedInUser())
      ){
         if(in_array($page, $admin_pages) && !isAdmin()){
+            header('Location: ./');
+        }
+        if(in_array($page, $user_pages) && !isUser()){
             header('Location: ./');
         }
 
@@ -44,18 +50,14 @@ if(  isset($_GET['page'])   ){
    
      
 
-    //if ((in_array($page, $before_login_pages) && LoggedInUser() === false)){
-        //include('pages/' .$page. '.php');
-    //}else if (in_array($page, $after_login_pages) && LoggedInUser()){
+  
    
 
 
 }else {
 
 
-//if (isset($_GET['page']) && in_array($_GET['page'], $page_arr)) {
-   // $page = $_GET['page']; // login
- //   include('./pages/' . $page . '.php');
+
  
     include('./pages/home.php');
 }

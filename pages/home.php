@@ -6,21 +6,21 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://c4.wallpaperflare.com/wallpaper/297/22/531/lake-blue-moonlight-moon-wallpaper-preview.jpg" class="d-block w-100" alt="...">
+      <img src="https://vatvostudio.vn/wp-content/uploads/2023/01/Galaxy-S23-series-lo-poster-truoc-ngay-ra-mat-4.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/34b5bf180145769.6505ae7623131.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="https://s3-alpha.figma.com/hub/file/2316688557/b31c51ea-fb40-4eeb-b97e-9eae5da9b010-cover.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>
@@ -54,7 +54,7 @@
     <h5 class="card-title"><?php echo $row->name?></h5>
     <p class="card-text"><?php echo $row->price?></p>
     <p class="card-text"><?php echo $row->short_desc?></p>
-    <a href="#" class="btn btn-primary">Add to Card</a>
+    <a href="./?page=cart/create&id=<?php echo $row->id_product?>" class="btn btn-primary">Add to Card</a>
   </div>
 </div>
 </div>
