@@ -23,7 +23,7 @@ if(  isset($_GET['page'])   ){
     'stock/update'
     ,'stock/delete'];
     $user_pages =[
-        'cart/home','cart/create'
+        'cart/home','cart/create','cart/delete'
     ];
     $before_login_pages =['login' ,'register'];
     $after_login_pages =['dashboard',
@@ -44,7 +44,16 @@ if(  isset($_GET['page'])   ){
 
             include('pages/' . $page . '.php');
 
-         }else{
+         }
+         else if (in_array($page, $after_login_pages) && !LoggedInUser()){
+            header('Location: ./?page=login');
+
+
+         }
+        
+         
+         
+         else{
             header ( 'Location: ./');
         }
    

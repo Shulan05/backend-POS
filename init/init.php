@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 session_start();
 //include databse connection
 require_once('init/db.init.php');
