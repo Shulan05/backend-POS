@@ -46,7 +46,7 @@
                 if ($manage_products !== null) {
                     while ($row = $manage_products->fetch_object()) {
                 ?>
-<div class="col-4">
+<div class="col-lg-4 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
 <div class="card" style="width: 18rem; ">
 <img src="assets/images/<?php echo $row->image ?>" class="card-img-top" alt="Product Image">
 
