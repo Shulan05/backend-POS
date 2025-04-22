@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://s3-alpha.figma.com/hub/file/2316688557/b31c51ea-fb40-4eeb-b97e-9eae5da9b010-cover.png" class="d-block w-100" alt="...">
+      <img src="https://i.ytimg.com/vi/amJT0Nq6yy0/maxresdefault.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>
